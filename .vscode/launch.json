@@ -1,13 +1,22 @@
 {
-    "version": "0.1.0",
+    // Use IntelliSense to learn about possible Node.js debug attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
     "configurations": [
         {
-            "name": "Attach",
-            "type": "chrome",
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceRoot}\\bin\\www",
+            "outFiles": ["${workspaceRoot}/js/**/*.js"]
+        },
+        {
+            "type": "node",
             "request": "attach",
-            "port": 9222,
-            "sourceMaps": true,
-            "webRoot": "${workspaceRoot}"
+            "name": "Attach to Port",
+            "address": "localhost",
+            "port": 5858
         }
     ]
 }

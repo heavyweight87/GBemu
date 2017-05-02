@@ -1,5 +1,6 @@
+import {MemoryManager} from "./MemoryManager";
 
-class CPU {
+export class CPU {
     stackPointer : number = 0;
     programCounter : number = 0;
     regA : number = 0;

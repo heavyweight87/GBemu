@@ -1,6 +1,9 @@
+'use strict';
+import {MemoryManager} from "./MemoryManager";
+import {CPU} from "./CPU";
 
-class Main {
-    memoryManager = new MemoryManager()
+export class Main {
+    memoryManager = new MemoryManager("hello")
     cpu = new CPU(this.memoryManager);
 
     constructor() {
@@ -11,7 +14,7 @@ class Main {
     }
 };
 
-var m = new Main();
+//module.exports = Main;
 
 
 
