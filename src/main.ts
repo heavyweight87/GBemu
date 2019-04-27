@@ -1,10 +1,10 @@
 'use strict';
 import {MemoryManager} from "./MemoryManager";
-import {CPU} from "./CPU";
+import {Z80} from "./Z80";
 
 export class Main {
     memoryManager = new MemoryManager("hello")
-    cpu = new CPU(this.memoryManager);
+    cpu = new Z80(this.memoryManager);
 
     constructor() {
         var c = 255;
@@ -14,7 +14,6 @@ export class Main {
     }
 };
 
-//module.exports = Main;
 
 
 

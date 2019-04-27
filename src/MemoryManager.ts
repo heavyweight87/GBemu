@@ -21,11 +21,19 @@ export class MemoryManager {
 
     cartridgeData : Buffer;
 
+    highRAM : Buffer = new Buffer(127); //size of high ram
+
+    //memory map
+    readonly CARTRIDGE_START_ADDRESS : number = 0x100;
+    readonly HIGH_RAM_START_ADDRESS : number= 0xFF80;
+
+    readonly cartridge_path : string = "roms\\tetris.gb"
+
 
     constructor(romFile : string) {
         var fs = require('fs');
-        var fd = fs.openSync('../roms/tetris.gb', 'r');
-        const stats = fs.statSync("../roms/tetris.gb")
+        var fd = fs.openSync(this.cartridge_path, 'r');
+        const stats = fs.statSync(this.cartridge_path)
         const fileSizeInBytes = stats.size
         var length : number = fd.length;
         this.cartridgeData = new Buffer(fileSizeInBytes);
@@ -36,6 +44,9 @@ export class MemoryManager {
         if(address < this.bios.length) {
             return this.bios[address];
         }
+        if(address > this.bios.length){
+            return this.cartridgeData[address - this.CARTRIDGE_START_ADDRESS];
+        }
     }
 
     public readByte16(address : number){
@@ -43,6 +54,8 @@ export class MemoryManager {
     }
 
     public writeByte(address : number, value : number) {
-
+            if(address > this.HIGH_RAM_START_ADDRESS){
+                this.highRAM[address] = value;
+            }
     }
 };
